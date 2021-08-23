@@ -45,7 +45,7 @@ class Order(Base):
         comment="Идентификатор клиента")
     driver_id = Column(Integer, ForeignKey("drivers.id"), nullable=False,
         comment="Идентификатор водителя")
-    date_created = Column(DateTime, comment="Дата и время создания заказа")
+    date_created = Column(DateTime, nullable=False, comment="Дата и время создания заказа")
     status = Column(
         ChoiceType(
             [

@@ -2,7 +2,6 @@ from sqlalchemy import (Column, Integer, String, Boolean,
                         DateTime, ForeignKey, create_engine)
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
-from sqlalchemy.sql import func
 from sqlalchemy_utils.types.choice import ChoiceType
 
 
@@ -46,8 +45,7 @@ class Order(Base):
         comment="Идентификатор клиента")
     driver_id = Column(Integer, ForeignKey("drivers.id"), nullable=False,
         comment="Идентификатор водителя")
-    date_created = Column(DateTime(timezone=True), default=func.now(),
-        comment="Дата и время создания заказа")
+    date_created = Column(DateTime, comment="Дата и время создания заказа")
     status = Column(
         ChoiceType(
             [

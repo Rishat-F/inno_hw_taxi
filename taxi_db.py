@@ -28,7 +28,7 @@ class Client(Base):
         comment="Идентификатор клиента")
     name = Column(String(50), nullable=False, comment="Имя клиента")
     is_vip = Column(Boolean, default=False, nullable=False,
-                    comment="Является ли клиент VIP")
+        comment="Является ли клиент VIP")
 
     def __repr__(self):
         return f"Клиент: {self.name}({'Vip' if self.is_vip else 'not Vip'})"
@@ -41,10 +41,10 @@ class Order(Base):
         comment="Идентификатор поездки")
     address_from = Column(String(100), nullable=False, comment="Адрес посадки")
     address_to = Column(String(100), nullable=False, comment="Адрес высадки")
-    client_id = Column(Integer, ForeignKey("clients.id"), nullable=False,
-        comment="Идентификатор клиента")
-    driver_id = Column(Integer, ForeignKey("drivers.id"), nullable=False,
-        comment="Идентификатор водителя")
+    client_id = Column(Integer, ForeignKey("clients.id", ondelete="SET DEFAULT"),
+        nullable=False, server_default="-404", comment="Идентификатор клиента")
+    driver_id = Column(Integer, ForeignKey("drivers.id", ondelete="SET DEFAULT"),
+        nullable=False, server_default="-404", comment="Идентификатор водителя")
     date_created = Column(DateTime, nullable=False, comment="Дата и время создания заказа")
     status = Column(
         ChoiceType(

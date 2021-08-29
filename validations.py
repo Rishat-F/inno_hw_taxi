@@ -14,7 +14,7 @@ POST_SCHEMAS = {
             "car": {
                 "description": "Driver's car",
                 "type": "string",
-            }
+            },
         },
     },
     "clients": {
@@ -32,7 +32,7 @@ POST_SCHEMAS = {
             "is_vip": {
                 "description": "Is client VIP?",
                 "type": "boolean",
-            }
+            },
         },
     },
     "orders": {
@@ -49,8 +49,14 @@ POST_SCHEMAS = {
                 "address_to": "Another address",
             }
         ],
-        "required": ["client_id", "driver_id", "date_created",
-                     "status", "address_from", "address_to"],
+        "required": [
+            "client_id",
+            "driver_id",
+            "date_created",
+            "status",
+            "address_from",
+            "address_to",
+        ],
         "additionalProperties": False,
         "properties": {
             "client_id": {
